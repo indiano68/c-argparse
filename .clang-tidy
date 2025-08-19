@@ -1,0 +1,19 @@
+Checks: >
+  clang-analyzer-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  bugprone-*,
+  misc-*,
+  -readability-braces-around-statements,
+  -readability-isolate-declaration,
+  -bugprone-easily-swappable-parameters
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'
+FormatStyle: file  # Use .clang-format
+CheckOptions:
+  - key:             modernize-use-nullptr.NullMacros
+    value:           'NULL'
+  - key:             readability-identifier-naming.ClassCase
+    value:           CamelCase
+
