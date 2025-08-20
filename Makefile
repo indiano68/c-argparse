@@ -1,4 +1,5 @@
 CC ?=clang
+CFLAGS ?= -std=c99 -Wall -Wextra -Werror -Wconversion -Wshadow
 SRC_DIR := ./src/
 SRC_FILES :=  $(wildcard $(SRC_DIR)*.c)
 SRC_INCLUDES :=  $(wildcard $(SRC_DIR)*.h)
@@ -11,7 +12,7 @@ all: build_dir $(EXECUTABLES)
 
 ./bin/%: ./examples/%.c $(SRC_FILES) $(SRC_INCLUDES)
 	@echo "Building: " $@
-	@$(CC) $< $(SRC_FILES) -I $(SRC_DIR) -o $@ 
+	@$(CC) $(CFLAGS) $< $(SRC_FILES) -I $(SRC_DIR) -o $@ 
 
 
 build_dir:  
