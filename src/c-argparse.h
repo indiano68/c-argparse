@@ -24,9 +24,11 @@ typedef struct {
   const char short_flag;
   const carg_type_t type;
   void *destination;
+  const char *description;
 } carg_opt_t;
 
 typedef struct {
+  const char *name;
   const carg_type_t type;
   void *destination;
 } carg_pos_t;
@@ -37,4 +39,6 @@ carg_error_t carg_parse_args(int argc, char **argv, carg_pos_t *positionals,
                              int num_options);
 void carg_print_args(carg_pos_t *positionals, int num_positionals,
                      carg_opt_t *options, int num_options);
+void carg_print_help(char *exec_name, carg_pos_t *positionals,
+                     int num_positionals, carg_opt_t *options, int num_options);
 #endif // !__C_ARGPARSE_H__

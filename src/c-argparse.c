@@ -393,3 +393,21 @@ static carg_error_t set_arg(const char *arg, void *dest, carg_type_t arg_type) {
   }
   return error_level;
 }
+
+void carg_print_help(char *exec_name, carg_pos_t *positionals,
+                     int num_positionals, carg_opt_t *options,
+                     int num_options) {
+  (void)options;
+  (void)num_options;
+
+  printf("Usage: %s [OPTIONS] ", exec_name);
+  for (int pos_idx = 0; pos_idx < num_positionals; pos_idx++)
+    printf("<%s> ", positionals[pos_idx].name);
+  printf("\n\nOPTIONS:\n");
+
+  for (int opt_idx = 0; opt_idx < num_options; opt_idx++)
+    printf("    --%s (%s%c) : %s \n", options[opt_idx].long_flag,
+           options[opt_idx].short_flag != 0 ? "-" : " NONE",
+           options[opt_idx].short_flag != 0 ? options[opt_idx].short_flag : ' ',
+           options[opt_idx].description);
+}
